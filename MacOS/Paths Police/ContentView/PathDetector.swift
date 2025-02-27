@@ -40,7 +40,7 @@ struct PathDetector: View {
                                 displayPath = path
                             }) {
                                 showFullPath ? Text(path) : Text(
-                                    URL(fileURLWithPath: path).lastPathComponent
+                                    basename(atPath: path)
                                 )
                             }
                             .buttonStyle(LinkButtonStyle())
@@ -51,7 +51,23 @@ struct PathDetector: View {
                 .frame(maxWidth: .infinity)
                 VStack {
                     if let displayPath = displayPath {
-                        Text("Type: \(isDir(atPath: displayPath)! ? "Folder" : "File")")
+                        Grid {
+                            GridRow {
+                                Text("Type")
+                                    .bold()
+                                Text(pathType(atPath: displayPath))
+                            }
+                            GridRow {
+                                Text("Name")
+                                    .bold()
+                                Text(basename(atPath: displayPath))
+                            }
+                            GridRow {
+                                Text("Path")
+                                    .bold()
+                                Text(displayPath)
+                            }
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity)
