@@ -37,11 +37,13 @@ struct PathDetector: View {
                         ForEach(allPaths, id: \.self) { path in
                             if showFullPath {
                                 Text(path)
+                                    .padding(2)
                             }
                             else {
                                 Text(
                                     URL(fileURLWithPath: path).lastPathComponent
                                 )
+                                .padding(2)
                             }
                         }
                     }
@@ -60,8 +62,13 @@ struct PathDetector: View {
         panel.allowsMultipleSelection = false // One File Limited
         panel.canChooseDirectories = true // Folder Allowed
         if panel.runModal() == .OK {
-            selectedPath = panel.url?.path // Get Selected Path
-            allPaths = getAllFilesAndFolders(at: selectedPath!)
+            selectedPath = panel.url?.path
+            if isDir(atPath: selectedPath!)! {
+                allPaths = getAllFilesAndFolders(at: selectedPath!)
+            }
+            else {
+                allPaths = [selectedPath!]
+            }
         }
     }
     
