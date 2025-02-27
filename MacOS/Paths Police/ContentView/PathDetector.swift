@@ -12,6 +12,7 @@ struct PathDetector: View {
     @State private var showFullPath: Bool = false
     @State private var selectedPath: String?
     @State private var allPaths: [String] = []
+    @State private var displayPath: String?
     
     var body: some View {
         VStack {
@@ -31,24 +32,29 @@ struct PathDetector: View {
             .padding(.top)
             Divider()
                 .padding()
-            VStack {
+            HStack {
                 ScrollView {
                     VStack(alignment: .leading) {
                         ForEach(allPaths, id: \.self) { path in
-                            if showFullPath {
-                                Text(path)
-                                    .padding(2)
-                            }
-                            else {
-                                Text(
+                            Button(action: {
+                                displayPath = path
+                            }) {
+                                showFullPath ? Text(path) : Text(
                                     URL(fileURLWithPath: path).lastPathComponent
                                 )
-                                .padding(2)
                             }
+                            .buttonStyle(LinkButtonStyle())
                         }
                     }
                     .padding()
                 }
+                .frame(maxWidth: .infinity)
+                VStack {
+                    if let displayPath = displayPath {
+                        Text("Type: \(isDir(atPath: displayPath)! ? "Folder" : "File")")
+                    }
+                }
+                .frame(maxWidth: .infinity)
             }
             .padding(.horizontal)
             .padding(.bottom)
