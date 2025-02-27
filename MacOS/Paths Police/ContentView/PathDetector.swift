@@ -9,14 +9,47 @@ import SwiftUI
 
 struct PathDetector: View {
     
-    @State private var selectedFilePath: String?
+    @State private var showFullPath: Bool = false
+    @State private var selectedPath: String?
+    @State private var allPaths: [String] = []
     
     var body: some View {
         VStack {
-            Text("Selected File Path: " + (selectedFilePath ?? ""))
-            Button(action: selectFile) {
-                Text("Select File or Folder")
+            HStack {
+                Button(action: selectFile) {
+                    Text("Select File or Folder")
+                }
+                Button(action: {
+                    showFullPath = !showFullPath
+                }) {
+                    Text(showFullPath ? "Hide Full Path" : "Show Full Path")
+                }
+                Spacer()
+                Text(selectedPath ?? "Please Select a File or Folder")
             }
+            .padding(.horizontal)
+            .padding(.top)
+            Divider()
+                .padding()
+            VStack {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        ForEach(allPaths, id: \.self) { path in
+                            if showFullPath {
+                                Text(path)
+                            }
+                            else {
+                                Text(
+                                    URL(fileURLWithPath: path).lastPathComponent
+                                )
+                            }
+                        }
+                    }
+                    .padding()
+                }
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
         }
     }
     
@@ -27,14 +60,9 @@ struct PathDetector: View {
         panel.allowsMultipleSelection = false // One File Limited
         panel.canChooseDirectories = true // Folder Allowed
         if panel.runModal() == .OK {
-            selectedFilePath = panel.url?.path // Get Selected Path
-            let allFilesAndFolders = getAllFilesAndFolders(at: selectedFilePath!)
-            for item in allFilesAndFolders {
-                print(type(of: item))
-                print(item)
-            }
+            selectedPath = panel.url?.path // Get Selected Path
+            allPaths = getAllFilesAndFolders(at: selectedPath!)
         }
-        
     }
     
     func getAllFilesAndFolders(at path: String) -> [String] {
@@ -44,11 +72,11 @@ struct PathDetector: View {
         do {
             let items = try fileManager.contentsOfDirectory(
                 atPath: path
-            ) // 获取当前目录下的内容
+            )
             for item in items {
                 let fullPath = (path as NSString).appendingPathComponent(
                     item
-                ) // 绝对路径
+                )
                 allItems.append(fullPath)
                 
                 var isDir: ObjCBool = false
@@ -56,12 +84,12 @@ struct PathDetector: View {
                     .fileExists(atPath: fullPath, isDirectory: &isDir), isDir.boolValue {
                     let subItems = getAllFilesAndFolders(
                         at: fullPath
-                    ) // 递归获取子目录
+                    )
                     allItems.append(contentsOf: subItems)
                 }
             }
         } catch {
-            print("读取目录失败: \(error.localizedDescription)")
+            print("Error: \(error.localizedDescription)")
         }
         
         return allItems
