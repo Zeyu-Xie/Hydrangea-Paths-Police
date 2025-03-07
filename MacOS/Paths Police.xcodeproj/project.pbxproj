@@ -6,7 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		939A99512D7B23CE00544D39 /* Paths PoliceFinderSyncExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 939A99492D7B23CE00544D39 /* Paths PoliceFinderSyncExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		939A994F2D7B23CE00544D39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93CAC5762D70EB3000909F7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 939A99482D7B23CE00544D39;
+			remoteInfo = "Paths PoliceFinderSyncExtension";
+		};
 		93CAC5902D70EB3100909F7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93CAC5762D70EB3000909F7E /* Project object */;
@@ -23,13 +34,46 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		939A99522D7B23CE00544D39 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				939A99512D7B23CE00544D39 /* Paths PoliceFinderSyncExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		939A99492D7B23CE00544D39 /* Paths PoliceFinderSyncExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Paths PoliceFinderSyncExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CAC57E2D70EB3000909F7E /* Paths Police.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paths Police.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CAC58F2D70EB3100909F7E /* Paths PoliceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Paths PoliceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CAC5992D70EB3100909F7E /* Paths PoliceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Paths PoliceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		939A99552D7B23CE00544D39 /* Exceptions for "Paths PoliceFinderSyncExtension" folder in "Paths PoliceFinderSyncExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 939A99482D7B23CE00544D39 /* Paths PoliceFinderSyncExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		939A994A2D7B23CE00544D39 /* Paths PoliceFinderSyncExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				939A99552D7B23CE00544D39 /* Exceptions for "Paths PoliceFinderSyncExtension" folder in "Paths PoliceFinderSyncExtension" target */,
+			);
+			path = "Paths PoliceFinderSyncExtension";
+			sourceTree = "<group>";
+		};
 		93CAC5802D70EB3000909F7E /* Paths Police */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Paths Police";
@@ -48,6 +92,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		939A99462D7B23CE00544D39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93CAC57B2D70EB3000909F7E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,6 +129,7 @@
 				93CAC5802D70EB3000909F7E /* Paths Police */,
 				93CAC5922D70EB3100909F7E /* Paths PoliceTests */,
 				93CAC59C2D70EB3100909F7E /* Paths PoliceUITests */,
+				939A994A2D7B23CE00544D39 /* Paths PoliceFinderSyncExtension */,
 				93CAC57F2D70EB3000909F7E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +140,7 @@
 				93CAC57E2D70EB3000909F7E /* Paths Police.app */,
 				93CAC58F2D70EB3100909F7E /* Paths PoliceTests.xctest */,
 				93CAC5992D70EB3100909F7E /* Paths PoliceUITests.xctest */,
+				939A99492D7B23CE00544D39 /* Paths PoliceFinderSyncExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +148,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		939A99482D7B23CE00544D39 /* Paths PoliceFinderSyncExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 939A99562D7B23CE00544D39 /* Build configuration list for PBXNativeTarget "Paths PoliceFinderSyncExtension" */;
+			buildPhases = (
+				939A99452D7B23CE00544D39 /* Sources */,
+				939A99462D7B23CE00544D39 /* Frameworks */,
+				939A99472D7B23CE00544D39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				939A994A2D7B23CE00544D39 /* Paths PoliceFinderSyncExtension */,
+			);
+			name = "Paths PoliceFinderSyncExtension";
+			packageProductDependencies = (
+			);
+			productName = "Paths PoliceFinderSyncExtension";
+			productReference = 939A99492D7B23CE00544D39 /* Paths PoliceFinderSyncExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		93CAC57D2D70EB3000909F7E /* Paths Police */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93CAC5A32D70EB3100909F7E /* Build configuration list for PBXNativeTarget "Paths Police" */;
@@ -102,10 +177,12 @@
 				93CAC57A2D70EB3000909F7E /* Sources */,
 				93CAC57B2D70EB3000909F7E /* Frameworks */,
 				93CAC57C2D70EB3000909F7E /* Resources */,
+				939A99522D7B23CE00544D39 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				939A99502D7B23CE00544D39 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				93CAC5802D70EB3000909F7E /* Paths Police */,
@@ -173,6 +250,9 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					939A99482D7B23CE00544D39 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					93CAC57D2D70EB3000909F7E = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -203,11 +283,19 @@
 				93CAC57D2D70EB3000909F7E /* Paths Police */,
 				93CAC58E2D70EB3100909F7E /* Paths PoliceTests */,
 				93CAC5982D70EB3100909F7E /* Paths PoliceUITests */,
+				939A99482D7B23CE00544D39 /* Paths PoliceFinderSyncExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		939A99472D7B23CE00544D39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93CAC57C2D70EB3000909F7E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +320,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		939A99452D7B23CE00544D39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93CAC57A2D70EB3000909F7E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +351,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		939A99502D7B23CE00544D39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 939A99482D7B23CE00544D39 /* Paths PoliceFinderSyncExtension */;
+			targetProxy = 939A994F2D7B23CE00544D39 /* PBXContainerItemProxy */;
+		};
 		93CAC5912D70EB3100909F7E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 93CAC57D2D70EB3000909F7E /* Paths Police */;
@@ -269,6 +369,60 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		939A99532D7B23CE00544D39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Paths PoliceFinderSyncExtension/Paths_PoliceFinderSyncExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SAR93BUHA2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Paths PoliceFinderSyncExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Paths PoliceFinderSyncExtension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Zeyu-Xie.Paths-Police.Paths-PoliceFinderSyncExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		939A99542D7B23CE00544D39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Paths PoliceFinderSyncExtension/Paths_PoliceFinderSyncExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SAR93BUHA2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Paths PoliceFinderSyncExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Paths PoliceFinderSyncExtension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Zeyu-Xie.Paths-Police.Paths-PoliceFinderSyncExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		93CAC5A12D70EB3100909F7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -514,6 +668,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		939A99562D7B23CE00544D39 /* Build configuration list for PBXNativeTarget "Paths PoliceFinderSyncExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				939A99532D7B23CE00544D39 /* Debug */,
+				939A99542D7B23CE00544D39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		93CAC5792D70EB3000909F7E /* Build configuration list for PBXProject "Paths Police" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
