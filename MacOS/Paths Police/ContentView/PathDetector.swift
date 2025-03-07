@@ -10,6 +10,7 @@ import SwiftUI
 struct PathDetector: View {
     
     @State private var showFullPath: Bool = false
+    @State private var showOnlyProblematicItems: Bool = false
     @State private var selectedPath: String?
     @State private var allPaths: [String] = []
     @State private var displayPath: String?
@@ -28,61 +29,87 @@ struct PathDetector: View {
                 Spacer()
                 Text(selectedPath ?? "Please Select a File or Folder")
             }
-            .padding(.horizontal)
-            .padding(.top)
             Divider()
-                .padding()
+                .padding(.vertical, 6)
             HStack {
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        ForEach(allPaths, id: \.self) { path in
-                            Button(action: {
-                                displayPath = path
-                            }) {
-                                showFullPath ? Text(path) : Text(
-                                    basename(atPath: path)
-                                )
-                            }
-                            .buttonStyle(LinkButtonStyle())
-                        }
-                    }
-                    .padding()
-                }
-                .frame(maxWidth: .infinity)
                 VStack {
-                    if let displayPath = displayPath {
-                        Grid {
-                            GridRow {
-                                Text("Type")
-                                    .bold()
-                                Text(pathType(atPath: displayPath))
+                    if selectedPath != nil {
+                        ScrollView {
+                            VStack(alignment: .leading) {
+                                ForEach(allPaths, id: \.self) { path in
+                                    if(
+                                        matchWindows(
+                                            basename: basename(atPath: path)
+                                        )
+                                    ) {
+                                        if (!showOnlyProblematicItems) {
+                                            HStack {
+                                                Button(action: {
+                                                    displayPath = path
+                                                }) {
+                                                    showFullPath ? Text(path) : Text(
+                                                        basename(atPath: path)
+                                                    )
+                                                }
+                                                .buttonStyle(LinkButtonStyle())
+                                                Spacer()
+                                                Text("✅")
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        HStack {
+                                            Button(action: {
+                                                displayPath = path
+                                            }) {
+                                                showFullPath ? Text(path) : Text(
+                                                    basename(atPath: path)
+                                                )
+                                            }
+                                            .buttonStyle(LinkButtonStyle())
+                                            Spacer()
+                                            Text("❌")
+                                        }
+                                    }
+                                }
                             }
-                            GridRow {
-                                Text("Name")
-                                    .bold()
-                                Text(basename(atPath: displayPath))
+                        }
+                        .scrollIndicators(.hidden)
+                        .frame(maxWidth: .infinity)
+                        Divider()
+                            .padding(.vertical, 6)
+                        HStack {
+                            Button(action: {
+                                showOnlyProblematicItems = !showOnlyProblematicItems
+                            }) {
+                                Text("Show Only Problematic Items")
                             }
-                            GridRow {
-                                Text("Path")
-                                    .bold()
-                                Text(displayPath)
-                            }
+                            Spacer()
                         }
                     }
                 }
+                VStack {
+                    if let displayPath {
+                        InfoPanel(displayPath: Binding(
+                            get: { displayPath },
+                            set: { newValue in self.displayPath = newValue }
+                        ))
+                    }
+                    Spacer()
+                }
                 .frame(maxWidth: .infinity)
+                .padding(.leading)
             }
-            .padding(.horizontal)
-            .padding(.bottom)
         }
+        .padding()
     }
     
     func selectFile() {
         let panel = NSOpenPanel()
         panel.title = "Select File or Folder"
-        panel.allowedContentTypes = [] // All Type Supported
-        panel.allowsMultipleSelection = false // One File Limited
-        panel.canChooseDirectories = true // Folder Allowed
+        panel.allowedContentTypes = []
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = true
         if panel.runModal() == .OK {
             selectedPath = panel.url?.path
             if isDir(atPath: selectedPath!)! {
@@ -122,5 +149,61 @@ struct PathDetector: View {
         }
         
         return allItems
+    }
+}
+
+struct InfoPanel: View {
+    
+    @Binding var displayPath: String
+    
+    var body: some View {
+        let items = [
+            ("Type", pathType(atPath: displayPath)),
+            ("Name", basename(atPath: displayPath)),
+            ("Path", displayPath),
+            (
+                "Match Windows",
+                matchWindows(
+                    basename: basename(atPath: displayPath)
+                ) ? "True" : "False"
+            )
+        ]
+
+        VStack {
+            VStack {
+                ForEach(
+                    Array(items.enumerated()),
+                    id: \.element.0
+                ) {
+ index,
+ item in
+                    let (label, value) = item
+                    HStack {
+                        Text(label)
+                            .bold()
+                        Spacer()
+                        Text(value)
+                    }
+                    .padding(
+                        .bottom,
+                        index == items.count - 1 ? 0 : 6
+                    ) // 计算最后一个索引
+                }
+            }
+            .frame(maxWidth: .infinity)
+            VStack {
+                Button(action: {
+                    showInFinder()
+                }) {
+                    Text("Show in Finder")
+                }
+            }
+            .padding(.top, 6)
+        }
+    }
+    
+    func showInFinder() {
+        let url = URL(fileURLWithPath: displayPath)
+        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
 }
