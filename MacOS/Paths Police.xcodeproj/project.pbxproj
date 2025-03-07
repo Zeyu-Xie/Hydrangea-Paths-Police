@@ -29,9 +29,22 @@
 		93449F002D7B8E7C004B197B /* Paths PoliceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Paths PoliceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		9365ECA82D7BA274003B20EB /* Exceptions for "Paths Police" folder in "Paths Police" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Paths-Police-Info.plist",
+			);
+			target = 93449EE42D7B8E7A004B197B /* Paths Police */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		93449EE72D7B8E7A004B197B /* Paths Police */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				9365ECA82D7BA274003B20EB /* Exceptions for "Paths Police" folder in "Paths Police" target */,
+			);
 			path = "Paths Police";
 			sourceTree = "<group>";
 		};
@@ -402,6 +415,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Paths-Police-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Paths Police";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -432,6 +446,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Paths-Police-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Paths Police";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
