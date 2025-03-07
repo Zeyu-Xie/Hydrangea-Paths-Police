@@ -17,6 +17,14 @@ struct ContentView: View {
                         Text("Detect Path")
                     }
                 }
+                Section(header: Text("App Info")) {
+                    NavigationLink(destination: PrivacyPolicy()) {
+                        Text("Privacy Policy")
+                    }
+                    NavigationLink(destination: About()) {
+                        Text("About")
+                    }
+                }
             }
             .listStyle(SidebarListStyle())
             .padding(.vertical)
