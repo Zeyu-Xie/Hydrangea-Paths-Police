@@ -21,8 +21,8 @@ class FinderSync: FIFinderSync {
         FIFinderSyncController.default().directoryURLs = [self.myFolderURL]
         
         // Set up images for our badge identifiers. For demonstration purposes, this uses off-the-shelf images.
-        FIFinderSyncController.default().setBadgeImage(NSImage(named: NSImage.colorPanelName)!, label: "Status One" , forBadgeIdentifier: "One")
-        FIFinderSyncController.default().setBadgeImage(NSImage(named: NSImage.cautionName)!, label: "Status Two", forBadgeIdentifier: "Two")
+//        FIFinderSyncController.default().setBadgeImage(NSImage(named: NSImage.colorPanelName)!, label: "Status One" , forBadgeIdentifier: "One")
+//        FIFinderSyncController.default().setBadgeImage(NSImage(named: NSImage.cautionName)!, label: "Status Two", forBadgeIdentifier: "Two")
     }
     
     // MARK: - Primary Finder Sync protocol methods
@@ -62,12 +62,12 @@ class FinderSync: FIFinderSync {
         return NSImage(named: NSImage.cautionName)!
     }
     
-    override func menu(for menuKind: FIMenuKind) -> NSMenu {
-        // Produce a menu for the extension.
-        let menu = NSMenu(title: "")
-        menu.addItem(withTitle: "Example Menu Item", action: #selector(sampleAction(_:)), keyEquivalent: "")
-        return menu
-    }
+//    override func menu(for menuKind: FIMenuKind) -> NSMenu {
+//        // Produce a menu for the extension.
+//        let menu = NSMenu(title: "")
+//        menu.addItem(withTitle: "Example Menu Item", action: #selector(sampleAction(_:)), keyEquivalent: "")
+//        return menu
+//    }
     
     @IBAction func sampleAction(_ sender: AnyObject?) {
         let target = FIFinderSyncController.default().targetedURL()
