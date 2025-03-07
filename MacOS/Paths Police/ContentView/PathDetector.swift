@@ -34,6 +34,12 @@ struct PathDetector: View {
             HStack {
                 VStack {
                     if selectedPath != nil {
+                        HStack {
+                            StatisticPanel(allPaths: $allPaths)
+                            Spacer()
+                        }
+                        Divider()
+                            .padding(.vertical, 6)
                         ScrollView {
                             VStack(alignment: .leading) {
                                 ForEach(allPaths, id: \.self) { path in
@@ -82,7 +88,7 @@ struct PathDetector: View {
                             Button(action: {
                                 showOnlyProblematicItems = !showOnlyProblematicItems
                             }) {
-                                Text("Show Only Problematic Items")
+                                Text(showOnlyProblematicItems ? "Show all Items" : "Show only Problematic Items")
                             }
                             Spacer()
                         }
@@ -152,6 +158,27 @@ struct PathDetector: View {
     }
 }
 
+struct StatisticPanel: View {
+    
+    @Binding var allPaths: [String]
+    
+    var body: some View {
+        HStack {
+            Text("\(allPaths.count) items scanned, \(problemCnt()) problematic items detected.")
+        }
+    }
+    
+    func problemCnt() -> Int {
+        var cnt = 0
+        for path in allPaths {
+            if !matchWindows(basename: basename(atPath: path)) {
+                cnt += 1
+            }
+        }
+        return cnt
+    }
+}
+
 struct InfoPanel: View {
     
     @Binding var displayPath: String
@@ -175,8 +202,8 @@ struct InfoPanel: View {
                     Array(items.enumerated()),
                     id: \.element.0
                 ) {
- index,
- item in
+                    index,
+                    item in
                     let (label, value) = item
                     HStack {
                         Text(label)
@@ -187,7 +214,7 @@ struct InfoPanel: View {
                     .padding(
                         .bottom,
                         index == items.count - 1 ? 0 : 6
-                    ) // 计算最后一个索引
+                    )
                 }
             }
             .frame(maxWidth: .infinity)

@@ -39,14 +39,14 @@ class FinderSync: FIFinderSync {
         NSLog("endObservingDirectoryAtURL: %@", url.path as NSString)
     }
     
-    override func requestBadgeIdentifier(for url: URL) {
-        NSLog("requestBadgeIdentifierForURL: %@", url.path as NSString)
-        
-        // For demonstration purposes, this picks one of our two badges, or no badge at all, based on the filename.
-        let whichBadge = abs(url.path.hash) % 3
-        let badgeIdentifier = ["", "One", "Two"][whichBadge]
-        FIFinderSyncController.default().setBadgeIdentifier(badgeIdentifier, for: url)
-    }
+//    override func requestBadgeIdentifier(for url: URL) {
+//        NSLog("requestBadgeIdentifierForURL: %@", url.path as NSString)
+//        
+//        // For demonstration purposes, this picks one of our two badges, or no badge at all, based on the filename.
+//        let whichBadge = abs(url.path.hash) % 3
+//        let badgeIdentifier = ["", "One", "Two"][whichBadge]
+//        FIFinderSyncController.default().setBadgeIdentifier(badgeIdentifier, for: url)
+//    }
     
     // MARK: - Menu and toolbar item support
     
