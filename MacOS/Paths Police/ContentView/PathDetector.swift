@@ -164,7 +164,13 @@ struct StatisticPanel: View {
     
     var body: some View {
         HStack {
-            Text("\(allPaths.count) items scanned, \(problemCnt()) problematic items detected.")
+            Text("\(allPaths.count)")
+                .bold()
+            Text("items scanned,")
+            Text("\(problemCnt())")
+                .bold()
+                .foregroundStyle(.red)
+            Text("problematic items detected.")
         }
     }
     
