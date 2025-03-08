@@ -6,40 +6,66 @@
 //
 
 import SwiftUI
+import AppKit
 
 struct PathDetector: View {
     
+    // User Config
     @State private var showFullPath: Bool = false
     @State private var showOnlyProblematicItems: Bool = false
+    
+    // Status Variables
     @State private var selectedPath: String?
     @State private var allPaths: [String] = []
     @State private var displayPath: String?
     
     var body: some View {
+        
         VStack {
+            
+            // Top Buttons
             HStack {
                 Button(action: selectFile) {
                     Text("Select File or Folder")
                 }
                 Button(action: {
-                    showFullPath = !showFullPath
+                    refresh()
                 }) {
-                    Text(showFullPath ? "Hide Full Path" : "Show Full Path")
+                    Text("Refresh")
                 }
                 Spacer()
                 Text(selectedPath ?? "Please Select a File or Folder")
+                if let selectedPath = selectedPath {
+                    Button(action: {
+                        NSPasteboard.general.clearContents()
+                        NSPasteboard.general.setString(selectedPath, forType: .string)
+                    }) {
+                        Image(systemName: "document.on.document")
+                    }
+                    .buttonStyle(LinkButtonStyle())
+                }
             }
+            
             Divider()
                 .padding(.vertical, 6)
+            
+            // Functional Panels
             HStack {
+                
+                // Left
                 VStack {
                     if selectedPath != nil {
+                        
+                        // Statistics Panel
                         HStack {
-                            StatisticPanel(allPaths: $allPaths)
+                            StatisticsPanel(allPaths: $allPaths)
                             Spacer()
                         }
+                        
                         Divider()
                             .padding(.vertical, 6)
+                        
+                        // File List Panel
                         ScrollView {
                             VStack(alignment: .leading) {
                                 ForEach(allPaths, id: \.self) { path in
@@ -82,18 +108,30 @@ struct PathDetector: View {
                         }
                         .scrollIndicators(.hidden)
                         .frame(maxWidth: .infinity)
+                        
                         Divider()
                             .padding(.vertical, 6)
+                        
+                        // Left Bottom Buttons
                         HStack {
                             Button(action: {
                                 showOnlyProblematicItems = !showOnlyProblematicItems
                             }) {
-                                Text(showOnlyProblematicItems ? "Show all Items" : "Show only Problematic Items")
+                                Text(
+                                    showOnlyProblematicItems ? "Show all Items" : "Show only Problematic Items"
+                                )
+                            }
+                            Button(action: {
+                                showFullPath = !showFullPath
+                            }) {
+                                Text(showFullPath ? "Hide Full Path" : "Show Full Path")
                             }
                             Spacer()
                         }
                     }
                 }
+                
+                // Right
                 VStack {
                     if let displayPath {
                         InfoPanel(displayPath: Binding(
@@ -156,9 +194,16 @@ struct PathDetector: View {
         
         return allItems
     }
+    
+    func refresh() {
+        if selectedPath != nil {
+            allPaths = getAllFilesAndFolders(at: selectedPath!)
+            displayPath = nil
+        }
+    }
 }
 
-struct StatisticPanel: View {
+struct StatisticsPanel: View {
     
     @Binding var allPaths: [String]
     
